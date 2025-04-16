@@ -1,4 +1,4 @@
-The Virtual Executive Assistant: AI Document Mastery for Tourism Operators
+The Virtual Executive Personal Assistant: AI Document Mastery for Tourism Operators
 This repository contains prompt templates and resources for tourism businesses to implement their own AI-powered virtual executive assistant, capable of slashing 20+ hours of administrative work per month without hiring additional staff.
 Overview
 Tourism business leaders often spend countless hours drafting essential documents—from board reports to SOPs—when they could be focusing on strategy and visitor experience. This Virtual Executive Assistant implementation provides the tools to transform this process entirely.
