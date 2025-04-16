@@ -1,4 +1,723 @@
-<p>This procedure incorporates elements of [cultural element] which represents [significance]. Staff must understand this cultural context to deliver an authentic experience.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Executive Assistant for Tourism</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #246c46;
+            padding-bottom: 20px;
+        }
+        .header h1 {
+            color: #246c46;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 18px;
+            color: #555;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .input-section, .output-section {
+            flex: 1;
+            min-width: 300px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .input-section h2, .output-section h2 {
+            color: #246c46;
+            margin-top: 0;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        select, textarea, input[type="text"], input[type="color"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        input[type="color"] {
+            height: 40px;
+            padding: 2px;
+        }
+        select {
+            background-color: white;
+        }
+        textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+        button {
+            background-color: #246c46;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #1a5234;
+        }
+        .branding-toggle {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e9f0ed;
+            border-radius: 6px;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin-right: 15px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #246c46;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .branding-options {
+            display: none;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            margin-top: 15px;
+        }
+        .branding-options h3 {
+            color: #246c46;
+            margin-top: 0;
+        }
+        .branding-preview {
+            padding: 15px;
+            border: 1px dashed #ddd;
+            border-radius: 4px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .logo-preview {
+            max-width: 200px;
+            max-height: 100px;
+            margin: 0 auto;
+            display: block;
+        }
+        .inline-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .inline-controls > div {
+            flex: 1;
+        }
+        .letterhead-preview {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            min-height: 100px;
+            background-color: white;
+        }
+        .document-preview {
+            min-height: 200px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+        .document-preview h3 {
+            margin-top: 0;
+            color: #246c46;
+        }
+        .document-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .stat-card {
+            flex: 1;
+            min-width: 120px;
+            background: #e9f0ed;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-card h3 {
+            margin: 0;
+            color: #246c46;
+            font-size: 16px;
+        }
+        .stat-card p {
+            margin: 5px 0 0;
+            font-size: 22px;
+            font-weight: bold;
+            color: #1a5234;
+        }
+        .opt-group-label {
+            font-weight: bold;
+            background-color: #e9f0ed;
+            color: #246c46;
+        }
+        .loading {
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+        .loading-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #246c46;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .action-buttons button {
+            flex: 1;
+        }
+        .secondary-button {
+            background-color: #555;
+        }
+        .secondary-button:hover {
+            background-color: #444;
+        }
+        .footnote {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+        }
+        .color-form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .color-form-group label {
+            flex: 1;
+            margin: 0 10px 0 0;
+        }
+        .color-form-group input {
+            width: 50px;
+        }
+        .file-upload {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        .file-upload-button {
+            padding: 10px;
+            background-color: #e9f0ed;
+            color: #246c46;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        .file-upload-button:hover {
+            background-color: #d8e8e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Virtual Executive Assistant for Tourism</h1>
+        <p>Transform rough notes or outdated documents into professional tourism business documents in minutes, saving 20+ hours of admin work</p>
+    </div>
+
+    <div class="container">
+        <div class="input-section">
+            <h2>1. Choose Document Type & Input</h2>
+            
+            <label for="document-type">Select Document Type:</label>
+            <select id="document-type">
+                <optgroup label="Operational Documents" class="opt-group-label">
+                    <option value="sop">Standard Operating Procedure (SOP)</option>
+                    <option value="opening-closing">Opening & Closing Duty Checklist</option>
+                    <option value="maintenance">Maintenance Schedule & Procedures</option>
+                    <option value="health-safety">Health & Safety Assessment</option>
+                    <option value="emergency">Emergency Response Plan</option>
+                    <option value="service-recovery">Service Recovery Protocol</option>
+                    <option value="tour-guide">Tour Guide Script</option>
+                    <option value="inspection">Vehicle/Equipment Inspection Form</option>
+                    <option value="cleaning">Cleaning & Sanitization Procedures</option>
+                    <option value="supplier">Supplier Onboarding Checklist</option>
+                </optgroup>
+                <optgroup label="Administrative Documents" class="opt-group-label">
+                    <option value="board-report">Board/Stakeholder Report</option>
+                    <option value="executive-summary">Executive Summary</option>
+                    <option value="business-case">Business Case for New Initiative</option>
+                    <option value="job-description">Job Description</option>
+                    <option value="training-manual">Employee Training Manual</option>
+                    <option value="performance-review">Performance Review Template</option>
+                    <option value="staff-handbook">Staff Handbook Section</option>
+                    <option value="meeting-minutes">Meeting Agenda & Minutes Template</option>
+                    <option value="business-plan">Annual Business Plan</option>
+                    <option value="budget">Budget Justification</option>
+                </optgroup>
+                <optgroup label="Customer-Facing Documents" class="opt-group-label">
+                    <option value="marketing">Marketing Description</option>
+                    <option value="cultural-guide">Cultural Interpretation Guide</option>
+                    <option value="faq">Customer FAQ Document</option>
+                    <option value="pre-arrival">Pre-Arrival Information</option>
+                    <option value="welcome-pack">Visitor Welcome Pack</option>
+                    <option value="follow-up">Post-Visit Follow-up Template</option>
+                    <option value="sustainability">Sustainability Policy</option>
+                    <option value="cultural-protocol">Cultural Protocol Overview</option>
+                    <option value="accessibility">Accessibility Information</option>
+                    <option value="feedback">Guest Feedback Form</option>
+                </optgroup>
+                <optgroup label="Revenue-Focused Documents" class="opt-group-label">
+                    <option value="pricing">Pricing Strategy Document</option>
+                    <option value="wholesale-rates">Inbound Wholesale Agent Rates - Terms Of Agreement</option>
+                    <option value="upsell">Upsell/Cross-sell Script</option>
+                    <option value="partnership">Partnership Proposal</option>
+                    <option value="grant">Grant Application</option>
+                    <option value="promotional">Promotional Event Plan</option>
+                    <option value="seasonal">Seasonal Campaign Brief</option>
+                    <option value="group-booking">Group Booking Terms</option>
+                    <option value="corporate">Corporate Package Description</option>
+                    <option value="loyalty">Loyalty Program Overview</option>
+                </optgroup>
+            </select>
+
+            <label for="business-description">Brief Description of Your Tourism Business:</label>
+            <textarea id="business-description" placeholder="Describe your tourism business, including experiences offered, target audience, and any unique cultural elements..."></textarea>
+
+            <label for="document-content">Current Document Content or Requirements:</label>
+            <textarea id="document-content" placeholder="Paste your existing document content here, or describe what you want included in your new document..."></textarea>
+
+            <label for="cultural-elements">Cultural Elements to Include:</label>
+            <input type="text" id="cultural-elements" placeholder="E.g., Māori cultural protocols, Indigenous knowledge, local traditions...">
+
+            <label for="tone">Preferred Tone:</label>
+            <select id="tone">
+                <option value="professional">Professional</option>
+                <option value="conversational">Conversational</option>
+                <option value="formal">Formal</option>
+                <option value="instructional">Instructional</option>
+                <option value="promotional">Promotional</option>
+            </select>
+
+            <!-- Branding Options Toggle -->
+            <div class="branding-toggle">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-branding">
+                    <span class="slider"></span>
+                </label>
+                <div>
+                    <strong>Add Business Branding & Letterhead</strong>
+                    <p style="margin: 5px 0 0;">Customize your document with your logo, contact information, and brand colors</p>
+                </div>
+            </div>
+
+            <!-- Branding Options (initially hidden) -->
+            <div class="branding-options" id="branding-options">
+                <h3>Letterhead Information</h3>
+                
+                <label for="business-name">Business Name:</label>
+                <input type="text" id="business-name" placeholder="Your Tourism Business Name">
+                
+                <div class="inline-controls">
+                    <div>
+                        <label for="phone">Phone:</label>
+                        <input type="text" id="phone" placeholder="+64 21 123 4567">
+                    </div>
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="text" id="email" placeholder="contact@yourbusiness.co.nz">
+                    </div>
+                </div>
+                
+                <label for="address">Business Address:</label>
+                <input type="text" id="address" placeholder="123 Tourism Way, Auckland, New Zealand">
+                
+                <label for="website">Website:</label>
+                <input type="text" id="website" placeholder="www.yourbusiness.co.nz">
+                
+                <label for="tagline">Tagline/Slogan:</label>
+                <input type="text" id="tagline" placeholder="Unforgettable Cultural Experiences">
+                
+                <h3>Logo & Design</h3>
+                
+                <div class="file-upload">
+                    <label for="logo-upload">Upload Your Logo:</label>
+                    <div class="file-upload-button" id="logo-upload-button">
+                        Click to Upload Logo (PNG, JPG, SVG)
+                    </div>
+                    <input type="file" id="logo-upload" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="branding-preview">
+                    <p>Logo Preview:</p>
+                    <img src="/api/placeholder/200/100" alt="Your logo will appear here" class="logo-preview" id="logo-preview">
+                </div>
+                
+                <div class="inline-controls">
+                    <div>
+                        <label for="logo-position">Logo Position:</label>
+                        <select id="logo-position">
+                            <option value="top-left">Top Left</option>
+                            <option value="top-center">Top Center</option>
+                            <option value="top-right">Top Right</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="letterhead-style">Letterhead Style:</label>
+                        <select id="letterhead-style">
+                            <option value="minimal">Minimal</option>
+                            <option value="traditional">Traditional</option>
+                            <option value="modern">Modern</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <h3>Brand Colors</h3>
+                
+                <div class="color-form-group">
+                    <label for="primary-color">Primary Color:</label>
+                    <input type="color" id="primary-color" value="#246c46">
+                </div>
+                
+                <div class="color-form-group">
+                    <label for="secondary-color">Secondary Color:</label>
+                    <input type="color" id="secondary-color" value="#3d8a5f">
+                </div>
+                
+                <div class="inline-controls">
+                    <div>
+                        <label for="heading-font">Heading Font:</label>
+                        <select id="heading-font">
+                            <option value="Arial">Arial</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Verdana">Verdana</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="body-font">Body Font:</label>
+                        <select id="body-font">
+                            <option value="Arial">Arial</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Verdana">Verdana</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <h3>Letterhead Preview</h3>
+                <div class="letterhead-preview" id="letterhead-preview">
+                    <div style="display: flex; align-items: center; border-bottom: 2px solid #246c46; padding-bottom: 10px; margin-bottom: 10px;">
+                        <img src="/api/placeholder/150/75" alt="Logo" style="max-height: 75px;">
+                        <div style="margin-left: 20px;">
+                            <div style="font-size: 24px; font-weight: bold; color: #246c46;">Your Tourism Business Name</div>
+                            <div style="font-size: 14px; color: #3d8a5f;">Unforgettable Cultural Experiences</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                        <div>123 Tourism Way, Auckland, New Zealand</div>
+                        <div>www.yourbusiness.co.nz | contact@yourbusiness.co.nz | +64 21 123 4567</div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="transform-button">Transform My Document</button>
+        </div>
+
+        <div class="output-section">
+            <h2>2. Your Transformed Document</h2>
+            
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Transforming your document...</p>
+            </div>
+
+            <div class="document-preview">
+                <h3>Document Preview</h3>
+                <p class="placeholder-text">Your transformed document will appear here...</p>
+                <!-- Transformed document content will go here -->
+            </div>
+
+            <div class="document-stats">
+                <div class="stat-card">
+                    <h3>Time Saved</h3>
+                    <p>4.5 hrs</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Word Count</h3>
+                    <p>0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Quality Score</h3>
+                    <p>-</p>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="download-button">Download Document</button>
+                <button id="copy-button" class="secondary-button">Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footnote">
+        <p>© 2025 Michael W Gibbons, AI Business Automation Coach for Tourism Operators. All rights reserved.</p>
+        <p>This tool was created to demonstrate the power of AI as your Virtual Executive Assistant.</p>
+        <p>For personalized AI implementation coaching, visit <a href="https://yourwebsite.com">yourwebsite.com</a></p>
+    </div>
+
+    <script>
+        // Toggle branding options visibility
+        document.getElementById('toggle-branding').addEventListener('change', function() {
+            document.getElementById('branding-options').style.display = this.checked ? 'block' : 'none';
+        });
+        
+        // Logo upload button functionality
+        document.getElementById('logo-upload-button').addEventListener('click', function() {
+            document.getElementById('logo-upload').click();
+        });
+        
+        // Preview uploaded logo
+        document.getElementById('logo-upload').addEventListener('change', function(e) {
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('logo-preview').src = e.target.result;
+                    updateLetterheadPreview();
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+        
+        // Update letterhead preview when inputs change
+        const letterheadInputs = ['business-name', 'phone', 'email', 'address', 'website', 'tagline', 'primary-color', 'secondary-color', 'logo-position', 'letterhead-style'];
+        letterheadInputs.forEach(id => {
+            document.getElementById(id).addEventListener('change', updateLetterheadPreview);
+            document.getElementById(id).addEventListener('input', updateLetterheadPreview);
+        });
+        
+        // Update the letterhead preview based on user inputs
+        function updateLetterheadPreview() {
+            const businessName = document.getElementById('business-name').value || 'Your Tourism Business Name';
+            const phone = document.getElementById('phone').value || '+64 21 123 4567';
+            const email = document.getElementById('email').value || 'contact@yourbusiness.co.nz';
+            const address = document.getElementById('address').value || '123 Tourism Way, Auckland, New Zealand';
+            const website = document.getElementById('website').value || 'www.yourbusiness.co.nz';
+            const tagline = document.getElementById('tagline').value || 'Unforgettable Cultural Experiences';
+            const primaryColor = document.getElementById('primary-color').value;
+            const secondaryColor = document.getElementById('secondary-color').value;
+            const logoPosition = document.getElementById('logo-position').value;
+            const letterheadStyle = document.getElementById('letterhead-style').value;
+            const logoSrc = document.getElementById('logo-preview').src;
+            
+            let letterheadHTML = '';
+            
+            // Generate different letterhead styles
+            switch(letterheadStyle) {
+                case 'minimal':
+                    letterheadHTML = `
+                        <div style="display: flex; align-items: center; border-bottom: 2px solid ${primaryColor}; padding-bottom: 10px; margin-bottom: 10px;">
+                            <img src="${logoSrc}" alt="Logo" style="max-height: 75px; ${logoPosition === 'top-center' ? 'margin: 0 auto; display: block;' : logoPosition === 'top-right' ? 'margin-left: auto;' : ''}">
+                            <div style="margin-left: ${logoPosition === 'top-left' ? '20px' : '0'}; ${logoPosition === 'top-center' ? 'display: none;' : ''}">
+                                <div style="font-size: 24px; font-weight: bold; color: ${primaryColor};">${businessName}</div>
+                                <div style="font-size: 14px; color: ${secondaryColor};">${tagline}</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                            <div>${address}</div>
+                            <div>${website} | ${email} | ${phone}</div>
+                        </div>
+                    `;
+                    break;
+                case 'traditional':
+                    letterheadHTML = `
+                        <div style="text-align: center; margin-bottom: 15px;">
+                            <img src="${logoSrc}" alt="Logo" style="max-height: 100px; margin: 0 auto 10px;">
+                            <div style="font-size: 28px; font-weight: bold; color: ${primaryColor};">${businessName}</div>
+                            <div style="font-size: 16px; color: ${secondaryColor}; margin-bottom: 10px;">${tagline}</div>
+                            <div style="font-size: 14px;">${address}</div>
+                            <div style="font-size: 14px;">${phone} | ${email} | ${website}</div>
+                        </div>
+                        <div style="border-top: 1px solid ${primaryColor}; border-bottom: 3px solid ${primaryColor}; height: 5px; margin: 10px 0;"></div>
+                    `;
+                    break;
+                case 'modern':
+                    letterheadHTML = `
+                        <div style="position: relative; padding-left: 20px; border-left: 5px solid ${primaryColor}; margin-bottom: 20px;">
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                <img src="${logoSrc}" alt="Logo" style="max-height: 85px;">
+                                <div style="margin-left: 20px;">
+                                    <div style="font-size: 26px; font-weight: bold; color: ${primaryColor};">${businessName}</div>
+                                    <div style="font-size: 15px; font-style: italic; color: ${secondaryColor};">${tagline}</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 13px;">
+                                <div style="display: flex; align-items: center;">
+                                    <span style="font-weight: bold; margin-right: 5px;">Address:</span> ${address}
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <span style="font-weight: bold; margin-right: 5px;">Phone:</span> ${phone}
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <span style="font-weight: bold; margin-right: 5px;">Email:</span> ${email}
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <span style="font-weight: bold; margin-right: 5px;">Web:</span> ${website}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                default:
+                    letterheadHTML = `
+                        <div style="display: flex; align-items: center; border-bottom: 2px solid ${primaryColor}; padding-bottom: 10px; margin-bottom: 10px;">
+                            <img src="${logoSrc}" alt="Logo" style="max-height: 75px;">
+                            <div style="margin-left: 20px;">
+                                <div style="font-size: 24px; font-weight: bold; color: ${primaryColor};">${businessName}</div>
+                                <div style="font-size: 14px; color: ${secondaryColor};">${tagline}</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                            <div>${address}</div>
+                            <div>${website} | ${email} | ${phone}</div>
+                        </div>
+                    `;
+            }
+            
+            document.getElementById('letterhead-preview').innerHTML = letterheadHTML;
+        }
+        
+        // Basic functionality for document transformation
+        document.getElementById('transform-button').addEventListener('click', function() {
+            // Show loading spinner
+            document.querySelector('.loading').style.display = 'block';
+            
+            // Hide placeholder text
+            document.querySelector('.placeholder-text').style.display = 'none';
+            
+            // Simulate processing delay
+            setTimeout(function() {
+                // Hide loading spinner
+                document.querySelector('.loading').style.display = 'none';
+                
+                // Get selected document type
+                const documentType = document.getElementById('document-type').value;
+                
+                // Get document title based on selection
+                const documentTitle = document.getElementById('document-type').options[document.getElementById('document-type').selectedIndex].text;
+                
+                // Check if branding is enabled
+                const brandingEnabled = document.getElementById('toggle-branding').checked;
+                
+                // Generate a sample transformed document based on type
+                let transformedContent = '';
+                
+                // Add letterhead if branding is enabled
+                if (brandingEnabled) {
+                    transformedContent += document.getElementById('letterhead-preview').innerHTML;
+                }
+                
+                transformedContent += `<h3>${documentTitle}</h3>`;
+                
+                // Add some sample content based on document type
+                switch(documentType) {
+                    case 'sop':
+                        transformedContent += generateSampleSOP();
+                        break;
+                    case 'wholesale-rates':
+                        transformedContent += generateWholesaleRates();
+                        break;
+                    default:
+                        transformedContent += generateGenericDocument(documentTitle);
+                }
+                
+                // Update the document preview
+                document.querySelector('.document-preview').innerHTML = transformedContent;
+                
+                // Update stats
+                const stats = calculateStats(transformedContent, brandingEnabled);
+                document.querySelectorAll('.stat-card')[0].querySelector('p').textContent = stats.timeSaved;
+                document.querySelectorAll('.stat-card')[1].querySelector('p').textContent = stats.wordCount;
+                document.querySelectorAll('.stat-card')[2].querySelector('p').textContent = stats.qualityScore;
+                
+            }, 2000); // 2 second delay for demo purposes
+        });
+        
+        // Sample document generators
+        function generateSampleSOP() {
+            return `
+                <h4>1. Purpose and Scope</h4>
+                <p>This Standard Operating Procedure (SOP) outlines the steps and guidelines for [specific process] within our tourism operation. It ensures consistency, safety, and cultural authenticity across all customer interactions.</p>
+                
+                <h4>2. Cultural Significance</h4>
+                <p>This procedure incorporates elements of [cultural element] whi<p>This procedure incorporates elements of [cultural element] which represents [significance]. Staff must understand this cultural context to deliver an authentic experience.</p>
                 
                 <h4>3. Roles and Responsibilities</h4>
                 <ul>
